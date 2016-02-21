@@ -15,6 +15,6 @@ def showStaticImage(request):
     Image.init()
     i = Image.open(imagePath)
     
-    response = HttpResponse(mimetype='image/png')
+    response = HttpResponse(content_type='image/png')
     i.save(response,'PNG')
     return response
