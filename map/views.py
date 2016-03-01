@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from .forms import EmailForm
 #def index(request):
 #    return HttpResponse("Hello, world. You're at the polls index.")
 
@@ -18,6 +18,11 @@ def showStaticImage(request):
     response = HttpResponse(content_type='image/png')
     i.save(response,'PNG')
     return response
+
+def home(request):
+	form = EmailForm()
+	context = {"form": form}
+	return render(request, template, context)
 
 def plotResults(request):
     from mysite.settings import PROJECT_PATH
