@@ -19,4 +19,12 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^map/', include('map.urls')),
+    url(r'^ww3/', include('ww3.urls')),
 ]
+
+
+
+
+
+
+

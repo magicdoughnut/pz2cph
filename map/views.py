@@ -4,25 +4,23 @@ from .forms import EmailForm
 #def index(request):
 #    return HttpResponse("Hello, world. You're at the polls index.")
 
-def map_disp(request):
+def map_disp(request, latlon):
+    #return render(request, 'map/map_disp.html', {})
+    from mysite.settings import PROJECT_PATH
+    #np.save(PROJECT_PATH+'/../map/scratch/question_id.npy', question_id)
+    file = open(PROJECT_PATH+'/../map/scratch/latlon.txt', "w")
+    file.write(latlon)
+    file.close()
     return render(request, 'map/map_disp.html', {})
 
-def showStaticImage(request):
-    """ Simply return a static image as a png """
-    
-    imagePath = "/Users/markdawson/Documents/python/pz2cph_workspace/mysite/map/staticImage.png"
-    from PIL import Image
-    Image.init()
-    i = Image.open(imagePath)
-    
-    response = HttpResponse(content_type='image/png')
-    i.save(response,'PNG')
-    return response
+def index(request):
+    return HttpResponse("Here put some instructions on how to use the site (through the search window).")
 
-def home(request):
-	form = EmailForm()
-	context = {"form": form}
-	return render(request, template, context)
+#def home(request):
+#	form = EmailForm()
+#	context = {"form": form}
+#	template = "map_disp.html"
+#	return render(request, template, context)
 
 def plotResults(request):
     from mysite.settings import PROJECT_PATH
@@ -35,8 +33,15 @@ def plotResults(request):
     
     #lat = int(input('latitude:	\n'))
     #lon = int(input('longitude:	\n'))
-    lat = 50
-    lon = -10
+    #lat = 50
+
+    #latlon = int(np.asscalar(np.load(PROJECT_PATH+'/../map/scratch/question_id.npy')))
+    file = open(PROJECT_PATH+'/../map/scratch/latlon.txt', "r")
+    latlon = file.readline()
+    file.close()
+
+    lat = int(latlon[0:2])
+    lon = int(latlon[2:6])
 
     reduction = 100
 
