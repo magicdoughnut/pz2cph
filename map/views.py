@@ -24,7 +24,7 @@ def index(request):
 
 def plotResults(request):
     from mysite.settings import PROJECT_PATH
-    from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+    #from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
     import numpy as np
     import matplotlib.pyplot as plt
     from mpl_toolkits.mplot3d import Axes3D
@@ -91,12 +91,21 @@ def plotResults(request):
     m.scatter(x2,y2,15,marker='o',color='r')
     m.scatter(xg3,yg3,2,marker='x',color='r')
     plt.annotate('Depth (MSL): \n'+str(data_reduc[x_idx,y_idx])+' m', xy=(-0.4, 0.8), xycoords='axes fraction')
+    print('image saved')
 
-    canvas = FigureCanvas(fig)
-    response = HttpResponse(content_type='image/png')
+    fig.savefig(PROJECT_PATH+'/../map/result.png')
+    print('image saved')
+
+
+    image_file = open(PROJECT_PATH+'/../map/result.png','rb').read()
+    return HttpResponse(image_file,content_type='image/png')
+
+    #return render(request, 'map/result.png', {})
+    #canvas = FigureCanvas(fig)
+    #response = HttpResponse(content_type='image/png')
     
-    canvas.print_png(response)
-    return response
+    #canvas.print_png(response)
+    #return response
     
 #    #Plot
 #    fig = plt.figure()

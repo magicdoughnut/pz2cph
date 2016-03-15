@@ -19,7 +19,7 @@ def index(request):
 def plotResults(request):
     # basic NOMADS OpenDAP extraction and plotting script
     from mysite.settings import PROJECT_PATH
-    from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+    #from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
     from mpl_toolkits.basemap import Basemap
     import numpy as np
     import matplotlib.pyplot as plt
@@ -85,8 +85,16 @@ def plotResults(request):
     # Add a colorbar and title, and then show the plot.
     
     plt.title('NWW3 Significant Wave Height from NOMADS: '+mydate)
-    canvas = FigureCanvas(fig)
-    response = HttpResponse(content_type='image/png')
+
+    fig.savefig(PROJECT_PATH+'/../ww3/result.png')
+
+    image_file = open(PROJECT_PATH+'/../ww3/result.png','rb').read()
+    return HttpResponse(image_file,content_type='image/png')
+
+
+
+    #canvas = FigureCanvas(fig)
+    #response = HttpResponse(content_type='image/png')
     
-    canvas.print_png(response)
-    return response
+    #canvas.print_png(response)
+    #return response
