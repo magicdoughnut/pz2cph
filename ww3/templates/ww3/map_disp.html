@@ -3,8 +3,11 @@
 <h1>____________PZ2CPH____________</h1>
 {% endblock %}
 
+<br/><a href="http://127.0.0.1:8000/index/">HOME</a><br/>
+
+
 <img src="/ww3/result.png" width="500px">
 
-{% for i in dts %}
-	<br><a href="http://127.0.0.1:8000/ww3/{{ i.link }}/">{{ i.prettyTime }}</a><br/>
+{% for datetime in datetimes %}
+	<br><a href="http://127.0.0.1:8000/ww3/{{ datetime.link }}/">{{ datetime.prettyTime }}</a><br/>
 {% endfor %}

@@ -14,24 +14,56 @@ def map_disp(request, latlon):
     file.write(latlon[8:10])   
     file.close()
 
-       # Make a start datetime
-    start = (datetime.now() - timedelta(days=10)).replace(hour=6, minute=0, second=0)
-
+    # Make a start datetime
+    start = (datetime.now() - timedelta(days=3)).replace(hour=6, minute=0, second=0)
+    
     # Make your datetimes
     dts = []
-    for i in range(0, 10):
+    for i in range(0, 13):
 
         # Move forward
         start += timedelta(hours=6)
 
         dts.append({'link': start.strftime('%Y%m%d%H'), 'prettyTime': start.strftime('%d-%m-%Y %H-%M-%S')})
-    print(dts)
-    return render(request, 'ww3/map_disp.html', dts)
+
+    dts = dts[::-1]
+    print(type(dts))
+    return render(request, 'ww3/map_disp.html', {'datetimes': dts})
 
 
+
+#def index(request):
+#    return HttpResponse("Here put some instructions on how to use the site (through the search window).")
 
 def index(request):
-    return HttpResponse("Here put some instructions on how to use the site (through the search window).")
+    #return render(request, 'map/map_disp.html', {})
+    from datetime import datetime, timedelta
+    from mysite.settings import PROJECT_PATH
+    #np.save(PROJECT_PATH+'/../map/scratch/question_id.npy', question_id)
+
+    # Make a start datetime
+    start = (datetime.now() - timedelta(days=3)).replace(hour=6, minute=0, second=0)
+    
+    # Make your datetimes
+    dts = []
+    for i in range(0, 13):
+
+        # Move forward
+        start += timedelta(hours=6)
+
+        dts.append({'link': start.strftime('%Y%m%d%H'), 'prettyTime': start.strftime('%d-%m-%Y %H-%M-%S')})
+
+    dts = dts[::-1]
+
+    start_default = (datetime.now() - timedelta(hours = 18)).replace(hour=6, minute=0, second=0)
+    latlon = start_default.strftime('%Y%m%d'+'00'+'%M')
+    
+    file = open(PROJECT_PATH+'/../ww3/scratch/latlon.txt', "w")
+    file.write(latlon[0:8]+'\n')
+    file.write(latlon[8:10])   
+    file.close()
+
+    return render(request, 'ww3/map_disp.html', {'datetimes': dts})
 
 
 def plotResults(request):
@@ -114,7 +146,7 @@ def plotResults(request):
         # plot the field using the fast pcolormesh routine 
         # set the colormap to jet.
         
-        m.pcolormesh(x,y,data,shading='flat',cmap=plt.cm.jet)
+        m.pcolormesh(x,y,data,vmin = 0, vmax = 10,shading='flat',cmap=plt.cm.jet)
         m.colorbar(location='right')
     
         # Add a coastline and axis values.

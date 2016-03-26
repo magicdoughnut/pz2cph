@@ -1,0 +1,35 @@
+<html>
+<body>
+{% block content %}
+<h1>  </h1>
+<h1>____________PZ2CPH____________</h1>
+{% endblock %}
+
+<br/><a href="http://127.0.0.1:8000/index/">HOME</a><br/>
+
+
+
+<br/><br/>
+
+<h2>p90 wind speeds for different directional things</h2>
+{% load staticfiles %}
+<img src="{% static "mean.png" %}" alt="My image"/>
+
+<br/>Method - All records inside May and June between 2010 and 2015 were extracted from WW3. The data was then bined into different directional things and the p50 (median) was calculated for this subset.<br/>
+
+<img src="{% static "p90north.png" %}" alt="My image"/>
+
+
+<img src="{% static "p90east.png" %}" alt="My image"/>
+
+<img src="{% static "p90south.png" %}" alt="My image"/>
+
+<img src="{% static "p90west.png" %}" alt="My image"/>
+
+
+
+<br>This site was created by Mark Dawson in 2016. Mark has a BSc and MRes in Ocean Science and currently works as a coastal modeller for an environmental consultancy. Please feel free to contact Mark via his <a href="https://uk.linkedin.com/in/mark-dawson-18807854">LinkedIn</a> page. <br/>
+
+
+</body>
+</html>

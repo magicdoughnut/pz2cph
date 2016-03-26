@@ -1,0 +1,27 @@
+<html>
+<body>
+{% block content %}
+<h1>  </h1>
+<h1>____________PZ2CPH____________</h1>
+{% endblock %}
+
+<br/>Welcome to PZ2CPH.<br/>
+<br/>This site was built to a accompany a sailing trip from Penzance, UK to Copenhagen, Denmark. The trip is being completed on the <a href="http://www.hollymae.info/content/holly-mae">Holly Mae</a> between May-June 2016 . These pages presents some rudimental information on wind speed, direction and wave height that might be expected during the trip. Most of this metocean data is derived from the NOAA model <a href="http://polar.ncep.noaa.gov/waves/index2.shtml ">'Wave Watch III'</a><br/> and BODC databases.<br/><br/>
+
+<br/><a href="http://127.0.0.1:8000/ww3/">Current WW3 significant wave height</a><br/>
+<br/><a href="http://127.0.0.1:8000/stats/">Probability of non exceedance</a><br/>
+<br/><a href="http://127.0.0.1:8000/map/">Water depths</a><br/>
+
+
+
+<br/><br/>
+
+<h2>About the Author</h2>
+{% load staticfiles %}
+<img src="{% static "mugshot.jpg" %}" alt="My image"/>
+
+<br>This site was created by Mark Dawson in 2016. Mark has a BSc and MRes in Ocean Science and currently works as a coastal modeller for an environmental consultancy. Please feel free to contact Mark via his <a href="https://uk.linkedin.com/in/mark-dawson-18807854">LinkedIn</a> page. <br/>
+
+
+</body>
+</html>

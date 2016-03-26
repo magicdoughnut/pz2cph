@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'map',
     'ww3',
+    'index',
+    'stats',
 ]
 
 MIDDLEWARE_CLASSES = [

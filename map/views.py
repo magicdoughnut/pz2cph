@@ -13,8 +13,19 @@ def map_disp(request, latlon):
     file.close()
     return render(request, 'map/map_disp.html', {})
 
+
 def index(request):
-    return HttpResponse("Here put some instructions on how to use the site (through the search window).")
+    #return render(request, 'map/map_disp.html', {})
+    from mysite.settings import PROJECT_PATH
+    #np.save(PROJECT_PATH+'/../map/scratch/question_id.npy', question_id)
+    latlon = '5001'
+    file = open(PROJECT_PATH+'/../map/scratch/latlon.txt', "w")
+    file.write(latlon)
+    file.close()
+    return render(request, 'map/map_disp.html', {})
+
+#def index(request):
+#    return HttpResponse("Here put some instructions on how to use the site (through the search window).")
 
 #def home(request):
 #	form = EmailForm()
